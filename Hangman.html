@@ -1,18 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Hangman</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+  <meta charset="UTF-8">
+  <title>Guess That Letter</title>
+  <link rel="stylesheet" type="text/css" href="./assets/Hangman.css">
 </head>
-  
-<body>
 
-    <h1>Hangman</h1>
+<style>
 
-    <h2 id=""
+  .letter {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    padding: 2px;
+    float: left;
+    margin: 2px;
+  }
 
+  .letter-button-color {
+    color: darkcyan;
+  }
 
+  .fridge-color {
+    color: white;
+  }
 
+  #display {
+    margin-top: 78px;
+    height: 500px;
+    width: 220px;
+    margin-left: 60px;
+  }
+
+  #buttons {
+    padding-top: 60px;
+  }
+
+  #clear {
+    margin-left: 20px;
+    font-size: 25px;
+    color: black;
+    border-style: solid;
+    width: 100px;
+  }
+</style>
+
+<body background="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80">
+  <div id="display"></div>
+  <div id="buttons"></div>
+  <button id="clear">clear</button>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
+
+      for(i=0; i < letters.length; i++) {
+        var letterBtn = $("<button class='letter-button letter letter-button-color'>");
+          letterBtn.attr("data-letter", letters[i]);
+          letterBtn.text(letters[i]);
+          $("#buttons").append(letterBtn);
+      }
+
+      $(".letter-button").on("click", function(){
+        var fridgeMagnet = $("<div class='letter fridge-color'>");
+          fridgeMagnet.text($(this).attr("data-letter"));
+          $("#display").append(fridgeMagnet);
+      })
+
+      $("#clear").on("click", function(){
+        $("#display").empty();
+      })
+
+    });
+  </script>
 </body>
+
+</html>
